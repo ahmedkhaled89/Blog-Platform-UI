@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import Alert from '../../Components/Alert';
+import { loginUser } from '../../Controllers/usersController';
 
-const Login = () => {
+export const Login = () => {
   const [error, setError] = useState(null);
 
   // Form Data State
@@ -9,9 +10,13 @@ const Login = () => {
   const [password, setPassword] = useState('');
 
   // handle Login Function
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log(email, password);
+    try {
+      await loginUser(email, password);
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
   return (
