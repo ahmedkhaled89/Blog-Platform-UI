@@ -1,4 +1,6 @@
 import { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import Alert from '../../Components/Alert';
 import { registerUser } from '../../Controllers/usersController';
 import { UserContext } from '../../contexts/UserContext';
@@ -6,6 +8,9 @@ import { UserContext } from '../../contexts/UserContext';
 const Register = () => {
   // Use user Context
   const { setUser } = useContext(UserContext);
+
+  // use navigate hook
+  const navigate = useNavigate();
 
   // Error State
   const [error, setError] = useState(null);
@@ -29,6 +34,8 @@ const Register = () => {
       );
       // Update the user state
       setUser({ email: formData.email, posts: [] });
+      // Navigate to Dashboard
+      navigate('/dashboard');
     } catch (error) {
       setError(error.message);
     }
