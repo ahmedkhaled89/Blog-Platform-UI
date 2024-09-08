@@ -12,7 +12,7 @@ const Register = () => {
     passwordConfirm: '',
   });
 
-  // handle Login Function
+  // handle Register Function
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
