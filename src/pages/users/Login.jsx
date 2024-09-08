@@ -1,8 +1,13 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Alert from '../../Components/Alert';
 import { loginUser } from '../../Controllers/usersController';
+import { UserContext } from '../../contexts/UserContext';
 
 export const Login = () => {
+  // use User Context
+  const { setUser } = useContext(UserContext);
+
+  // Error State
   const [error, setError] = useState(null);
 
   // Form Data State
@@ -13,7 +18,10 @@ export const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
+      // Login the user
       await loginUser(email, password);
+      // Update the user state
+      setUser({ email, posts: [] });
     } catch (error) {
       setError(error.message);
     }
