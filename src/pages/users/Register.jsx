@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Alert from '../../Components/Alert';
+import { registerUser } from '../../Controllers/usersController';
 
 const Register = () => {
   const [error, setError] = useState(null);
@@ -12,9 +13,17 @@ const Register = () => {
   });
 
   // handle Login Function
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    try {
+      await registerUser(
+        formData.email,
+        formData.password,
+        formData.passwordConfirm
+      );
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
   return (
