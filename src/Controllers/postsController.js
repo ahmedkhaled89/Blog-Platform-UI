@@ -25,6 +25,22 @@ const getUserPosts = async () => {
   return data.data;
 };
 
-// ***************** Update User Posts *****************
+// ***************** Delete User Posts *****************
+const deletePost = async (_id) => {
+  console.log(_id);
 
-export { getPosts, getUserPosts };
+  const token = localStorage.getItem('token');
+  const res = await fetch(`/api/posts/${_id}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const data = await res.json();
+  console.log(data);
+  if (!res.ok) {
+    throw Error(data.error);
+  }
+};
+
+export { getPosts, getUserPosts, deletePost };
