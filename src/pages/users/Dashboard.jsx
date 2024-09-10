@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { deletePost, getUserPosts } from '../../Controllers/postsController';
-import { UserContext } from '../../contexts/UserContext';
+import { UserContext } from '../../Contexts/UserContext';
 import Post from '../../Components/Post';
 import { Link } from 'react-router-dom';
 
@@ -26,9 +26,11 @@ const Dashboard = () => {
     <section className='card'>
       <p>{user.email}</p>
       <h1 className='title'>User Dashboard</h1>
+
       {loading && (
         <i className='fa-solid fa-spinner animate-spin text-4xl text-center block'></i>
       )}
+
       {user.posts &&
         user.posts.map((post) => (
           <div key={post._id}>
