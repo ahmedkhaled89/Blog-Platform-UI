@@ -4,6 +4,7 @@ import Login from './pages/users/login';
 import Register from './pages/users/Register';
 import Dashboard from './pages/users/dashboard';
 import Home from './pages/posts/Home';
+import CreatePost from './pages/posts/CreatePost';
 const App = () => {
   return (
     <BrowserRouter>
@@ -14,6 +15,7 @@ const App = () => {
           <Route path='login' element={<Login />} />
           <Route path='register' element={<Register />} />
           <Route path='dashboard' element={<Dashboard />} />
+          <Route path='create' element={<CreatePost />} />
         </Route>
       </Routes>
     </BrowserRouter>
