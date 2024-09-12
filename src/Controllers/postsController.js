@@ -27,8 +27,6 @@ const getUserPosts = async () => {
 
 // ***************** Delete User Posts *****************
 const deletePost = async (_id) => {
-  console.log(_id);
-
   const token = localStorage.getItem('token');
   const res = await fetch(`/api/posts/${_id}`, {
     method: 'DELETE',
@@ -37,10 +35,10 @@ const deletePost = async (_id) => {
     },
   });
   const data = await res.json();
-  console.log(data);
   if (!res.ok) {
     throw Error(data.error);
   }
+  return data;
 };
 
 // ***************** Create Post *****************
