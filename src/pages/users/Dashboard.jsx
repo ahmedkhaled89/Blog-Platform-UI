@@ -61,6 +61,7 @@ const Dashboard = () => {
                 <Link
                   className='fa-solid fa-pen-to-square nav-link text-green-500 hover:bg-green-200'
                   title='update'
+                  state={post}
                   to='/update'
                 ></Link>
                 <button
