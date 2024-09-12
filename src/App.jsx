@@ -2,9 +2,10 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from './pages/Layout';
 import Login from './pages/users/login';
 import Register from './pages/users/Register';
-import Dashboard from './pages/users/dashboard';
+import Dashboard from './pages/users/Dashboard';
 import Home from './pages/posts/Home';
 import CreatePost from './pages/posts/CreatePost';
+import UpdatePost from './pages/posts/UpdatePost';
 const App = () => {
   return (
     <BrowserRouter>
@@ -16,6 +17,7 @@ const App = () => {
           <Route path='register' element={<Register />} />
           <Route path='dashboard' element={<Dashboard />} />
           <Route path='create' element={<CreatePost />} />
+          <Route path='update' element={<UpdatePost />} />
         </Route>
       </Routes>
     </BrowserRouter>
