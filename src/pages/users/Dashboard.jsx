@@ -31,11 +31,13 @@ const Dashboard = () => {
 
   // Handle Delete post
   const handleDelete = async (_id) => {
-    try {
-      const data = await deletePost(_id);
-      setSuccess(data.msg);
-    } catch (error) {
-      setError(error.message);
+    if (confirm('Confirm Delete this post')) {
+      try {
+        const data = await deletePost(_id);
+        setSuccess(data.msg);
+      } catch (error) {
+        setError(error.message);
+      }
     }
 
     const newPosts = user.posts.filter((post) => post._id !== _id);
