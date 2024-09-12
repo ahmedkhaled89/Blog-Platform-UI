@@ -3,6 +3,8 @@ import { deletePost, getUserPosts } from '../../Controllers/postsController';
 import { UserContext } from '../../Contexts/UserContext';
 import Post from '../../Components/Post';
 import { Link } from 'react-router-dom';
+import Success from '../../Components/Success';
+import Alert from '../../Components/Alert';
 
 const Dashboard = () => {
   // Use User Contest
@@ -10,6 +12,11 @@ const Dashboard = () => {
 
   // Loading State
   const [loading, setLoading] = useState(true);
+
+  // Error State
+  const [error, setError] = useState(null);
+  // Success State
+  const [success, setSuccess] = useState(null);
 
   useEffect(() => {
     setTimeout(async () => {
@@ -22,6 +29,18 @@ const Dashboard = () => {
     }, 1000);
   }, []);
 
+  // Handle Delete post
+  const handleDelete = async (_id) => {
+    try {
+      const data = await deletePost(_id);
+      setSuccess(data.msg);
+    } catch (error) {
+      setError(error.message);
+    }
+
+    const newPosts = user.posts.filter((post) => post._id !== _id);
+    setUser({ ...user, posts: newPosts });
+  };
   return (
     <section className='card'>
       <p>{user.email}</p>
@@ -30,6 +49,9 @@ const Dashboard = () => {
       {loading && (
         <i className='fa-solid fa-spinner animate-spin text-4xl text-center block'></i>
       )}
+
+      {success && <Success msg={success} />}
+      {error && <Alert msg={error} />}
 
       {user.posts &&
         user.posts.map((post) => (
@@ -44,7 +66,7 @@ const Dashboard = () => {
                 <button
                   className='fa-solid fa-trash-can nav-link text-red-500 hover:bg-red-200'
                   title='Delete'
-                  onClick={() => deletePost(post._id)}
+                  onClick={() => handleDelete(post._id)}
                 ></button>
               </div>
             </Post>
