@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import Alert from '../../Components/Alert';
 import { registerUser } from '../../Controllers/usersController';
-import { UserContext } from '../../contexts/UserContext';
+import { UserContext } from '../../Contexts/UserContext';
 
 const Register = () => {
   // Use user Context
