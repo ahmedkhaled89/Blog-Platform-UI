@@ -41,11 +41,8 @@ const registerUser = async (email, password, passwordConfirm) => {
   });
   const data = await res.json();
   if (!res.ok) {
-    console.log(data);
-
     throw Error(data.error);
   }
-  console.log(data.data);
   localStorage.setItem('token', data.data.token);
   localStorage.setItem('email', data.data.email);
   return data.data;
